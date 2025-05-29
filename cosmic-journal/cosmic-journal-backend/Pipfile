@@ -1,0 +1,20 @@
+[scripts]
+start = "uvicorn app.main:app --reload"
+
+[packages]
+fastapi = "*"
+uvicorn = "*"
+sqlalchemy = "*"
+pydantic = "*"
+python-dotenv = "*"
+passlib = { extras = ["bcrypt"], version = "*" }
+pyephem = "*"
+requests = "*"
+python-jose = { extras = ["cryptography"], version = "*" }
+click = "*"
+
+[dev-packages]
+pytest = "*"
+black = "*"
+isort = "*"
+alembic = "*"
