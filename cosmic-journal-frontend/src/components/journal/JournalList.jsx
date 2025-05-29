@@ -1,29 +1,31 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { JournalContext } from '../contexts/JournalContext';
 import JournalEntry from './JournalEntry';
+import LoadingSpinner from './LoadingSpinner';
 
-const JournalList = ({ entries }) => {
-  const [expandedEntry, setExpandedEntry] = useState(null);
+const JournalList = () => {
+  const { entries, loading, error } = useContext(JournalContext);
 
-  if (entries.length === 0) {
-    return (
-      <div className="bg-white p-6 rounded-lg shadow text-center">
-        <p className="text-gray-500">No journal entries yet. Create your first one!</p>
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
+  if (error) return <p className="text-red-500">{error}</p>;
+  if (entries.length === 0) return <p className="text-gray-400">No journal entries found.</p>;
 
   return (
     <div className="space-y-4">
-      {entries.map(entry => (
-        <JournalEntry
-          key={entry.id}
-          entry={entry}
-          isExpanded={expandedEntry === entry.id}
-          onToggleExpand={() => setExpandedEntry(
-            expandedEntry === entry.id ? null : entry.id
-          )}
-        />
-      ))}
+      <AnimatePresence>
+        {entries.map((entry) => (
+          <motion.div
+            key={entry.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <JournalEntry entry={entry} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
