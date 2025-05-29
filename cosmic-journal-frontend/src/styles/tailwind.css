@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-cosmic text-starlight;
+}
+
+.starry-gradient {
+  background: linear-gradient(to bottom, #1a1a3d, #2a2a5d);
+}
+
+.glow {
+  box-shadow: 0 0 10px rgba(230, 230, 250, 0.5);
+}

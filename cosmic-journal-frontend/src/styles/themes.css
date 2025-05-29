@@ -1,0 +1,11 @@
+:root {
+  --cosmic-bg: #1a1a3d;
+  --starlight-text: #e6e6fa;
+  --nebula-accent: #6b7280;
+}
+
+.light {
+  --cosmic-bg: #e6e6fa;
+  --starlight-text: #1a1a3d;
+  --nebula-accent: #9ca3af;
+}
